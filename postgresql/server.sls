@@ -79,6 +79,7 @@ database_{{ d.name }}:
     - tablespace: {{ d.tablespace }}
   {% endif %}
     - encoding: {{ d.encoding|default('UTF8') }}
+    - template: {{ d.template|default('template0') }}
     - lc_collate: {{ d.lc_collate|default('en_US.UTF-8') }}
     - lc_ctype: {{ d.lc_ctype|default('en_US.UTF-8') }}
     - user: {{ d.user|default('postgres') }}

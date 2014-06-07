@@ -13,6 +13,10 @@ Debian:
         path: /etc/postgresql/9.1/main/postgresql.conf
       pg_hba:
         path: /etc/postgresql/9.1/main/pg_hba.conf
+    user:
+      name: postgres
+    group:
+      name: postgres
   client:
     pkgs:
       - postgresql-client
@@ -23,6 +27,12 @@ Redhat:
       - postgresql
     service:
       name: postgresql
+    config:
+      manage: []
+    user:
+      name: postgres
+    group:
+      name: postgres
   client:
     pkgs:
       - postgresql-client {# TODO: is this correct? #}
@@ -33,8 +43,24 @@ Arch:
       - postgresql
     service:
       name: postgresql
+    config:
+      manage: []
+    user:
+      name: postgres
+    group:
+      name: postgres
   client:
     pkgs:
       - postgresql-client {# TODO: is this correct? #}
       - python-psycopg2
+FreeBSD:
+  server:
+    service:
+      name: postgresql
+    config:
+      manage: []
+    user:
+      name: pgsql
+    group:
+      name: pgsql
 {% endload %}
