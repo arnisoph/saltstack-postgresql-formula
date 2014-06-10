@@ -12,7 +12,7 @@ NOTICE BEFORE YOU USE
 TODO
 ====
 
-* configure/ initialize cluster
+* configure/ initialize clusters
 
 Instructions
 ============
