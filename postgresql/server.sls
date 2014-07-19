@@ -8,16 +8,11 @@
 postgresql_server:
   pkg:
     - installed
-    - pkgs:
-{% for p in srv.pkgs %}
-      - {{ p }}
-{% endfor %}
+    - pkgs: {{ srv.pkgs }}
   service:
     - running
     - name: {{ srv.service.name|default('postgresql') }}
     - enable: {{ srv.service.enable|default(True) }}
-    - require:
-      - pkg: postgresql_server
 
 {#TODO: initdb on rhel #}
 

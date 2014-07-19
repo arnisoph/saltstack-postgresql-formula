@@ -6,7 +6,4 @@
 postgresql_client:
   pkg:
     - installed
-    - pkgs:
-{% for p in datamap.client.pkgs %}
-      - {{ p }}
-{% endfor %}
+    - pkgs: {{ datamap.client.pkgs }}
