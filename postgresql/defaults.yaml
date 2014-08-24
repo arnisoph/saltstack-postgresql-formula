@@ -21,7 +21,7 @@ Debian:
     pkgs:
       - postgresql-client
       - python-pygresql
-Redhat:
+RedHat:
   server:
     pkgs:
       - postgresql
