@@ -2,79 +2,83 @@
 saltstack-postgresql-formula
 ============================
 
-.. image:: https://api.flattr.com/button/flattr-badge-large.png
-    :target: https://flattr.com/submit/auto?user_id=bechtoldt&url=https%3A%2F%2Fgithub.com%2Fbechtoldt%2Fsaltstack-postgresql-formula
 
-Salt Stack Formula to set up and configure PostgreSQL, an object-relational database system
+.. image:: https://img.shields.io/badge/flattr-donate-red.svg
+    :alt: Donate via flattr
+    :target: https://flattr.com/profile/bechtoldt
 
-NOTICE BEFORE YOU USE
-=====================
+.. image:: https://img.shields.io/gratipay/bechtoldt.svg
+    :alt: Donate via Gratipay
+    :target: https://www.gratipay.com/bechtoldt/
 
-* This formula aims to follow the conventions and recommendations described at http://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html#conventions-formula and http://docs.saltstack.com/en/latest/topics/best_practices.html
+.. image:: https://img.shields.io/badge/license-Apache--2.0-blue.svg
+    :alt: Apache-2.0-licensed
+    :target: https://github.com/bechtoldt/saltstack-postgresql-formula/blob/master/LICENSE
 
-TODO
-====
+.. image:: https://img.shields.io/badge/gitter-chat-brightgreen.svg
+    :alt: Join Chat
+    :target: https://gitter.im/bechtoldt/saltstack-postgresql-formula?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 
-* configure/ initialize clusters
-
-Instructions
-============
-
-1. Add this repository as a `GitFS <http://docs.saltstack.com/topics/tutorials/gitfs.html>`_ backend in your Salt master config.
-
-2. Configure your Pillar top file (``/srv/pillar/top.sls``) and your pillars, see pillar.example.sls
-
-3. Include this Formula within another Formula or simply define your needed states within the Salt top file (``/srv/salt/top.sls``).
-
-Available states
-================
+SaltStack Formula to set up and configure PostgreSQL, an object-relational database system
 
 .. contents::
+    :backlinks: none
     :local:
 
-``postgresql.client``
----------------------
-Install PostgreSQL client libraries
 
-``postgresql.server``
----------------------
-Setup and configure PostgreSQL server
+Instructions
+------------
 
-Additional resources
-====================
+Please refer to https://github.com/bechtoldt/formula-docs to learn how to use
+this formula, how it is built and how you can add your changes.
 
-None
+**NOTICE:** This formula might uses the formhelper module which is a very useful Salt execution module that isn't available
+in upstream yet. Please consider retrieving it manually from https://github.com/bechtoldt/salt-modules and
+make it available to your Salt installation. Read `SaltStack documentation <http://docs.saltstack.com/en/latest/ref/modules/#modules-are-easy-to-write>`_ to
+see how this can be achieved.
 
-Templates
-=========
+Take a look at older `releases <https://github.com/bechtoldt/saltstack-postgresql-formula/releases>`_ to get a version that isn't using the formhelper
+yet (if any).
 
-Some states/ commands may refer to templates which aren't included in the files folder (``postgresql/files``). Take a look at ``contrib/`` (if present) for e.g. template examples and place them in separate file roots (e.g. Git repository, refer to `GitFS <http://docs.saltstack.com/topics/tutorials/gitfs.html>`_) in your Salt master config.
 
-Formula Dependencies
-====================
+Contributing
+------------
 
-None
+Contributions are welcome! All development guidelines we ask you to follow can
+be found at https://github.com/bechtoldt/formula-docs.
 
-Contributions
-=============
+In general:
 
-Contributions are always welcome. All development guidelines you have to know are
+1. Fork this repo on Github
+2. Add changes, test them, update docs (README.rst) if possible
+3. Submit your pull request (PR) on Github, wait for feedback
 
-* write clean code (proper YAML+Jinja syntax, no trailing whitespaces, no empty lines with whitespaces, LF only)
-* set sane default settings
-* test your code
-* update README.rst doc
+But it’s better to `file an issue <https://github.com/bechtoldt/saltstack-postgresql-formula/issues/new>`_ with your idea first.
 
-Salt Compatibility
-==================
 
-Tested with:
+Authors
+-------
 
-* 2014.1.x
+* Arnold Bechtoldt <mail@arnoldbechtoldt.com>
 
-OS Compatibility
-================
 
-Tested with:
+TODO
+----
 
-* GNU/ Linux Debian Wheezy
+* add instructions how to use formhelper, add information about it in the formula-docs (dependency), show up alternative?
+* table/ matrix: os/salt compatibility (dedicated file)
+* add list of available states
+* add tests
+* configure/ initialize clusters
+
+
+Miscellaneous
+-------------
+
+Recommended formulas:
+
+* SaltStack management: `saltstack-salt-formula <https://github.com/bechtoldt/saltstack-salt-formula>`_
+
+Further reading:
+
+* Documentation and Standardisation of SaltStack formulas: https://github.com/bechtoldt/formula-docs
