@@ -1,5 +1,8 @@
 #!jinja|yaml
 
+include:
+  - postgresql.repo
+
 {% from "postgresql/defaults.yaml" import rawmap with context %}
 {% set datamap = salt['grains.filter_by'](rawmap, merge=salt['pillar.get']('postgresql:lookup')) %}
 
@@ -9,12 +12,24 @@ postgresql_server:
   pkg:
     - installed
     - pkgs: {{ srv.pkgs }}
+{% if 'repo' in datamap %}
+    - require:
+      - pkgrepo: postgresql_repo
+{% endif %}
   service:
     - running
     - name: {{ srv.service.name|default('postgresql') }}
     - enable: {{ srv.service.enable|default(True) }}
-
-{#TODO: initdb on rhel #}
+{% if 'cluster' in srv %}
+  cmd:
+    - run
+    - name: {{ srv.cluster.createcluster_bin }} -d {{ srv.cluster.directory }} {{srv.cluster.version }} main
+    - onlyif: test -d {{ srv.cluster.directory }}
+    - require:
+      - pkg: postgresql_server
+    - require_in:
+      - service: postgresql_server
+{% endif %}
 
 {% if 'postgresql' in srv.config.manage|default([]) %}
 {{ srv.config.postgresql.path }}:
@@ -51,7 +66,6 @@ user_{{ u.name }}:
   {% if 'groups' in u %}
     - groups: {{ u.groups }}
   {% endif %}
-    - encrypt: {{ u.encrypt|default(True) }}
     - createdb: {{ u.createdb|default(False) }}
     - createroles: {{ u.createroles|default(False) }}
     - createuser: {{ u.createuser|default(False) }}
