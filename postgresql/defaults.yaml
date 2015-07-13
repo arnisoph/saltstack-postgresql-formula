@@ -5,10 +5,9 @@ Debian:
       - postgresql
     service:
       name: postgresql
+    cluster:
+      createcluster_bin: pg_createcluster
     config:
-      manage:
-        - postgresql
-        - pg_hba
       postgresql:
         path: /etc/postgresql/9.1/main/postgresql.conf
       pg_hba:
